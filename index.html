@@ -1,480 +1,310 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustFundMyKid — A real trust fund for every kid</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:sans-serif;background:#0a0a0f;color:#e8e8f0;min-height:100vh}
-.app{max-width:900px;margin:0 auto;padding:24px 16px}
-.logo{font-size:20px;font-weight:700;color:#fff;margin-bottom:4px}
-.logo span{color:#7c6ff7}
-.tagline{font-size:12px;color:#666;margin-bottom:28px}
-.tabs{display:flex;gap:8px;margin-bottom:28px;background:#111118;border-radius:12px;padding:6px}
-.tab{flex:1;padding:10px;border:none;background:none;color:#888;font-size:13px;font-weight:500;border-radius:8px;cursor:pointer}
-.tab.active{background:#1e1e2e;color:#fff}
-.tab i{margin-right:6px;font-size:15px;vertical-align:-2px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-.stat{background:#111118;border:0.5px solid #2a2a3a;border-radius:10px;padding:14px}
-.stat-label{font-size:11px;color:#666;margin-bottom:6px}
-.stat-value{font-size:22px;font-weight:700;color:#fff}
-.stat-sub{font-size:11px;color:#7c6ff7;margin-top:2px}
-.card{background:#111118;border:0.5px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px}
-.card-title{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;display:flex;align-items:center;gap:6px}
-.card-title i{font-size:14px;color:#7c6ff7}
-.method-tabs{display:flex;gap:8px;margin-bottom:16px}
-.mbtn{flex:1;padding:10px;background:#0a0a0f;border:0.5px solid #2a2a3a;border-radius:8px;color:#888;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}
-.mbtn.active{border-color:#7c6ff7;color:#7c6ff7;background:#13132a}
-.mbtn i{font-size:20px}
-.mbtn span{font-size:11px}
-.inp{width:100%;padding:12px 14px;background:#0a0a0f;border:0.5px solid #2a2a3a;border-radius:8px;color:#fff;font-size:14px;margin-bottom:12px;outline:none}
-.inp:focus{border-color:#7c6ff7}
-.inp::placeholder{color:#444}
-.cat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px}
-.cpick{padding:7px 6px;background:#0a0a0f;border:0.5px solid #2a2a3a;border-radius:8px;color:#888;font-size:11px;cursor:pointer;text-align:center}
-.cpick.active{border-color:#7c6ff7;color:#7c6ff7;background:#13132a}
-.cpick i{font-size:13px;vertical-align:-2px;margin-right:3px}
-.btn-primary{width:100%;padding:13px;background:#7c6ff7;border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-primary:hover{opacity:0.85}
-.badge-ok{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:#001a0a;border:0.5px solid #003a1a;color:#4ade80;padding:3px 10px;border-radius:20px;margin-top:8px}
-.badge-warn{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:#1a1200;border:0.5px solid #3a2e00;color:#c9a227;padding:3px 10px;border-radius:20px;margin-top:8px}
-.slider-row{margin-bottom:16px}
-.sl-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.sl-name{font-size:13px;color:#ccc;display:flex;align-items:center;gap:6px}
-.sl-name i{font-size:14px}
-.sl-pct{font-size:13px;font-weight:600;color:#7c6ff7;min-width:36px;text-align:right}
-input[type=range]{width:100%;accent-color:#7c6ff7;height:4px}
-.total-bar{background:#1e1e2e;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-.total-ok{color:#4ade80;font-size:13px;font-weight:500}
-.total-err{color:#f87171;font-size:13px;font-weight:500}
-.reset-btn{font-size:11px;background:none;border:0.5px solid #333;border-radius:6px;color:#888;padding:4px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
-.period-tabs{display:flex;gap:8px;margin-bottom:16px}
-.pbtn{padding:7px 16px;background:#0a0a0f;border:0.5px solid #2a2a3a;border-radius:8px;color:#888;font-size:12px;cursor:pointer}
-.pbtn.active{background:#13132a;border-color:#7c6ff7;color:#7c6ff7}
-.spend-row{display:flex;align-items:center;padding:9px 0;border-bottom:0.5px solid #1a1a2a}
-.spend-row:last-child{border-bottom:none}
-.spend-cat{font-size:13px;color:#ccc;display:flex;align-items:center;gap:8px;min-width:140px}
-.spend-cat i{font-size:15px}
-.spend-bar-wrap{flex:1;margin:0 14px;height:4px;background:#1e1e2e;border-radius:2px;overflow:hidden}
-.spend-bar-inner{height:100%;border-radius:2px;transition:width 0.4s}
-.spend-amt{font-size:13px;font-weight:600;color:#fff;min-width:60px;text-align:right}
-.cat-item{margin-bottom:14px}
-.cat-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.cat-name{font-size:13px;color:#ccc;display:flex;align-items:center;gap:6px}
-.cat-name i{font-size:15px}
-.cat-amounts{font-size:12px;color:#888}
-.cat-bar{height:6px;background:#1e1e2e;border-radius:3px;overflow:hidden}
-.cat-fill{height:100%;border-radius:3px;transition:width 0.4s}
-.cat-pct-lbl{font-size:11px;color:#666;margin-top:4px}
-.locked-badge{font-size:10px;background:#1a1a1a;border:0.5px solid #333;color:#c9a227;padding:2px 8px;border-radius:20px;display:inline-flex;align-items:center;gap:4px}
-.vcard{background:#16213e;border:0.5px solid #3a3a5a;border-radius:18px;padding:24px;margin-bottom:16px}
-.vcard-logo{font-size:13px;font-weight:700;color:#7c6ff7;letter-spacing:1px;margin-bottom:20px}
-.chip{width:36px;height:26px;background:#c9a227;border-radius:4px;margin-bottom:14px;opacity:0.8}
-.vcard-num{font-size:16px;letter-spacing:3px;color:#ccc;margin-bottom:12px;font-family:monospace}
-.vcard-bal{font-size:28px;font-weight:700;color:#fff;margin-bottom:4px}
-.vcard-bal-lbl{font-size:11px;color:#888;margin-bottom:16px}
-.vcard-row{display:flex;justify-content:space-between;align-items:flex-end}
-.vcard-lbl{font-size:10px;color:#888;margin-bottom:2px}
-.vcard-name{font-size:14px;font-weight:600;color:#fff}
-.vcard-val{font-size:12px;color:#ccc}
-.vault{background:#0d0d00;border:0.5px solid #3a2e00;border-radius:14px;padding:18px;margin-bottom:16px}
-.vault-amt{font-size:32px;font-weight:700;color:#c9a227;margin:8px 0}
-.vault-note{font-size:12px;color:#665a00}
-.vault-prog{height:6px;background:#1a1500;border-radius:3px;margin:10px 0}
-.vault-fill{height:100%;background:#c9a227;border-radius:3px;transition:width 0.4s}
-.spend-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-.spend-btn{padding:10px 8px;background:#0a0a0f;border:0.5px solid #2a2a3a;border-radius:8px;color:#888;font-size:12px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
-.spend-btn:hover{border-color:#7c6ff7;color:#ccc}
-.spend-btn i{font-size:18px;color:#7c6ff7}
-.tx{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:0.5px solid #1a1a2a}
-.tx:last-child{border-bottom:none}
-.tx-left{display:flex;align-items:center;gap:10px}
-.tx-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px}
-.tx-name{font-size:13px;color:#ccc;font-weight:500}
-.tx-date{font-size:11px;color:#555}
-.tx-credit{color:#4ade80;font-size:13px;font-weight:600}
-.tx-debit{color:#f87171;font-size:13px;font-weight:600}
-.notif{position:fixed;top:20px;right:20px;background:#1e1e2e;border:0.5px solid #7c6ff7;border-radius:10px;padding:12px 16px;font-size:13px;color:#ccc;z-index:100;opacity:0;transition:opacity 0.3s;pointer-events:none;max-width:260px}
-.notif.show{opacity:1}
-.view{display:none}
-.view.active{display:block}
-.empty{font-size:13px;color:#444;padding:8px 0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e8e8f0;min-height:100vh}
+a{color:inherit;text-decoration:none}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-bottom:0.5px solid #1a1a2a;position:sticky;top:0;background:#0a0a0fcc;backdrop-filter:blur(12px);z-index:10}
+.nav-logo{font-size:17px;font-weight:700;color:#fff}
+.nav-logo span{color:#7c6ff7}
+.nav-cta{padding:9px 20px;background:#7c6ff7;border:none;border-radius:8px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+.nav-cta:hover{opacity:0.85}
+.hero{text-align:center;padding:90px 24px 70px;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#13132a;border:0.5px solid #3a3a6a;border-radius:20px;padding:5px 14px;font-size:12px;color:#9d97f5;margin-bottom:28px}
+.hero-badge span{width:6px;height:6px;background:#7c6ff7;border-radius:50%;display:inline-block}
+h1{font-size:52px;font-weight:700;line-height:1.15;letter-spacing:-1.5px;color:#fff;margin-bottom:20px}
+h1 em{color:#7c6ff7;font-style:normal}
+.hero-sub{font-size:18px;color:#888;line-height:1.7;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto}
+.form-wrap{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.form-wrap input{padding:13px 18px;background:#111118;border:0.5px solid #2a2a3a;border-radius:10px;color:#fff;font-size:14px;width:280px;outline:none}
+.form-wrap input:focus{border-color:#7c6ff7}
+.form-wrap input::placeholder{color:#444}
+.form-wrap button{padding:13px 24px;background:#7c6ff7;border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.form-wrap button:hover{opacity:0.85}
+.form-note{font-size:12px;color:#555;margin-bottom:12px}
+.waitlist-count{font-size:13px;color:#666}
+.waitlist-count strong{color:#9d97f5}
+
+/* THREE PILLARS */
+.pillars{padding:80px 24px;max-width:960px;margin:0 auto}
+.section-label{font-size:11px;color:#7c6ff7;text-transform:uppercase;letter-spacing:1.5px;text-align:center;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:700;text-align:center;color:#fff;margin-bottom:16px;letter-spacing:-0.5px}
+.section-sub{font-size:16px;color:#666;text-align:center;max-width:520px;margin:0 auto 56px;line-height:1.7}
+.pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.pillar{border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.pillar-spend{background:#111118;border:0.5px solid #2a2a3a}
+.pillar-save{background:#0d0d00;border:0.5px solid #3a2e00}
+.pillar-grow{background:#0a0f1a;border:0.5px solid #0c3060}
+.pillar-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;display:inline-block;padding:3px 10px;border-radius:20px}
+.tag-spend{background:#1e1e2e;color:#7c6ff7}
+.tag-save{background:#1a1500;color:#c9a227}
+.tag-grow{background:#0a1a2e;color:#4da6ff}
+.pillar-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:10px}
+.pillar-desc{font-size:13px;line-height:1.7;margin-bottom:20px}
+.pillar-spend .pillar-desc{color:#666}
+.pillar-save .pillar-desc{color:#665a00}
+.pillar-grow .pillar-desc{color:#2a5a8a}
+.pillar-features{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pillar-features li{font-size:12px;display:flex;align-items:center;gap:8px}
+.pillar-spend .pillar-features li{color:#888}
+.pillar-save .pillar-features li{color:#8a7a00}
+.pillar-grow .pillar-features li{color:#3a7ab0}
+.pillar-features li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.pillar-spend .pillar-features li::before{background:#7c6ff7}
+.pillar-save .pillar-features li::before{background:#c9a227}
+.pillar-grow .pillar-features li::before{background:#4da6ff}
+.pillar-amount{font-size:32px;font-weight:700;margin-top:20px}
+.pillar-spend .pillar-amount{color:#7c6ff7}
+.pillar-save .pillar-amount{color:#c9a227}
+.pillar-grow .pillar-amount{color:#4da6ff}
+.pillar-amount-label{font-size:11px;margin-top:4px}
+.pillar-spend .pillar-amount-label{color:#444}
+.pillar-save .pillar-amount-label{color:#4a3e00}
+.pillar-grow .pillar-amount-label{color:#1a3a5a}
+
+/* CONTRACTS */
+.contracts{padding:80px 24px;max-width:760px;margin:0 auto;text-align:center}
+.contract-card{background:#111118;border:0.5px solid #2a2a3a;border-radius:20px;padding:32px;margin-top:48px;text-align:left}
+.contract-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:0.5px solid #1a1a2a}
+.contract-row:last-child{border-bottom:none}
+.contract-label{font-size:13px;color:#888}
+.contract-value{font-size:13px;font-weight:600;color:#fff}
+.contract-unlock{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
+.unlock-age{background:#13132a;color:#7c6ff7}
+.unlock-event{background:#0a1a2e;color:#4da6ff}
+.unlock-grade{background:#0d0d00;color:#c9a227}
+
+/* GROWTH SIM */
+.growth{padding:80px 24px;max-width:760px;margin:0 auto;text-align:center}
+.growth-visual{background:#111118;border:0.5px solid #2a2a3a;border-radius:20px;padding:32px;margin-top:48px}
+.growth-bars{display:flex;align-items:flex-end;gap:12px;height:160px;margin-bottom:16px;justify-content:center}
+.g-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:80px}
+.g-bar{width:100%;border-radius:6px 6px 0 0;transition:height 0.4s}
+.g-label{font-size:11px;color:#555}
+.g-amount{font-size:12px;font-weight:600}
+.growth-note{font-size:12px;color:#444;margin-top:12px}
+.growth-controls{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.ctrl{display:flex;align-items:center;gap:8px;font-size:13px;color:#888}
+.ctrl input{accent-color:#7c6ff7}
+
+/* HOW IT WORKS */
+.how{padding:80px 24px;max-width:760px;margin:0 auto;text-align:center}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:48px;text-align:left}
+.step{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:0.5px solid #1a1a2a}
+.step:last-child{border-bottom:none}
+.step-num{width:36px;height:36px;border-radius:50%;background:#13132a;border:0.5px solid #3a3a6a;color:#7c6ff7;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
+.step-desc{font-size:13px;color:#666;line-height:1.6}
+
+/* FOUNDER */
+.founder{padding:80px 24px;max-width:600px;margin:0 auto;text-align:center}
+.founder-card{background:#111118;border:0.5px solid #2a2a3a;border-radius:20px;padding:40px}
+.founder-avatar{width:64px;height:64px;border-radius:50%;background:#13132a;border:2px solid #7c6ff7;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#7c6ff7;margin:0 auto 16px}
+.founder-quote{font-size:15px;color:#aaa;line-height:1.8;margin-bottom:20px;font-style:italic}
+.founder-name{font-size:14px;font-weight:600;color:#fff}
+.founder-title{font-size:12px;color:#555;margin-top:4px}
+
+/* BOTTOM CTA */
+.bottom-cta{padding:90px 24px;text-align:center;border-top:0.5px solid #1a1a2a}
+.bottom-cta h2{font-size:38px;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:-0.5px}
+.bottom-cta p{font-size:16px;color:#666;margin-bottom:36px}
+footer{padding:24px 40px;border-top:0.5px solid #1a1a2a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-logo{font-size:14px;font-weight:700;color:#fff}
+.footer-logo span{color:#7c6ff7}
+.footer-note{font-size:12px;color:#444}
+@media(max-width:600px){h1{font-size:34px}nav{padding:16px 20px}.form-wrap input{width:100%}.form-wrap{flex-direction:column;align-items:center}.bottom-cta h2{font-size:26px}}
 </style>
+</head>
+<body>
 
-<div class="app">
-  <div class="logo">trustfund<span>mykid</span></div>
-  <div class="tagline">Smart money for smart kids</div>
-  <div class="tabs">
-    <button class="tab active" id="tab-parent" onclick="switchTab('parent')"><i class="ti ti-shield-check"></i>Parent view</button>
-    <button class="tab" id="tab-kid" onclick="switchTab('kid')"><i class="ti ti-piggy-bank"></i>Kid view</button>
+<nav>
+  <div class="nav-logo">trustfund<span>mykid</span></div>
+  <button class="nav-cta" onclick="document.getElementById('email').focus()">Join waitlist</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><span></span> A real trust fund — for every family</div>
+  <h1>Trust funds aren't<br>just for <em>rich kids.</em></h1>
+  <p class="hero-sub">TrustFundMyKid gives every parent the tools to spend, save, and grow money for their kids — with controls, locked savings, and real investments. Not just a wallet. A legacy.</p>
+  <div class="form-wrap">
+    <input type="email" id="email" placeholder="Enter your email address">
+    <button onclick="joinWaitlist()">Get early access</button>
   </div>
+  <p class="form-note">No credit card required &nbsp;·&nbsp; Free to join</p>
+  <div class="waitlist-count" id="wcount">Join <strong>247 parents</strong> already on the waitlist</div>
+</section>
 
-  <!-- PARENT VIEW -->
-  <div id="view-parent" class="view active">
-    <div class="grid3">
-      <div class="stat"><div class="stat-label">Total sent</div><div class="stat-value" id="stat-total">S/ 0.00</div><div class="stat-sub">this month</div></div>
-      <div class="stat"><div class="stat-label">Vault savings</div><div class="stat-value" id="stat-vault">S/ 0.00</div><div class="stat-sub"><i class="ti ti-lock" style="font-size:11px"></i> locked</div></div>
-      <div class="stat"><div class="stat-label">Available</div><div class="stat-value" id="stat-avail">S/ 0.00</div><div class="stat-sub">spendable</div></div>
+<!-- THREE PILLARS -->
+<section class="pillars">
+  <div class="section-label">How it works</div>
+  <div class="section-title">Three layers of money.<br>One account.</div>
+  <div class="section-sub">Every transfer you make gets split across three buckets — automatically, based on rules you set.</div>
+  <div class="pillar-grid">
+    <div class="pillar pillar-spend">
+      <span class="pillar-tag tag-spend">Spend</span>
+      <div class="pillar-title">Daily wallet</div>
+      <div class="pillar-desc">Controlled spending across categories you define. Your kid uses a virtual card.</div>
+      <ul class="pillar-features">
+        <li>Food, gaming, education, clothing</li>
+        <li>% limits per category</li>
+        <li>Real virtual Visa card</li>
+        <li>Weekly spend reports</li>
+      </ul>
+      <div class="pillar-amount">S/ 150</div>
+      <div class="pillar-amount-label">example monthly spend budget</div>
     </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ti ti-send"></i> Send money to Sofia</div>
-      <div class="method-tabs">
-        <button class="mbtn active" id="btn-yape" onclick="selectMethod('yape')"><i class="ti ti-bolt"></i><span>Yape</span></button>
-        <button class="mbtn" id="btn-plin" onclick="selectMethod('plin')"><i class="ti ti-bolt"></i><span>Plin</span></button>
-        <button class="mbtn" id="btn-bank" onclick="selectMethod('bank')"><i class="ti ti-building-bank"></i><span>Bank transfer</span></button>
-      </div>
-      <input class="inp" type="number" id="transfer-amt" placeholder="Amount in soles (S/)" min="1">
-      <div style="font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Send to specific category (optional)</div>
-      <div class="cat-grid" id="cat-picker"></div>
-      <button class="btn-primary" onclick="sendMoney()"><i class="ti ti-arrow-right"></i> Send now</button>
-      <div id="transfer-status" style="min-height:28px"></div>
+    <div class="pillar pillar-save">
+      <span class="pillar-tag tag-save">Save</span>
+      <div class="pillar-title">Locked vault</div>
+      <div class="pillar-desc">Money your kid can't touch — until you decide. Earns interest while it waits.</div>
+      <ul class="pillar-features">
+        <li>Locked by parent, unlocked by goal</li>
+        <li>Earns fixed-term deposit rates</li>
+        <li>Unlock by age, grade, or event</li>
+        <li>Kid watches it grow</li>
+      </ul>
+      <div class="pillar-amount">S/ 80</div>
+      <div class="pillar-amount-label">example monthly savings</div>
     </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ti ti-sliders"></i> Spending limits</div>
-      <div id="sliders"></div>
-      <div class="total-bar">
-        <span style="font-size:12px;color:#666">Total allocation</span>
-        <div style="display:flex;align-items:center;gap:10px">
-          <button class="reset-btn" onclick="resetPcts()"><i class="ti ti-refresh"></i> Reset</button>
-          <span id="total-label" class="total-ok">100%</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ti ti-chart-bar"></i> Spend summary</div>
-      <div class="period-tabs">
-        <button class="pbtn active" id="pbtn-weekly" onclick="setPeriod('weekly')">Weekly</button>
-        <button class="pbtn" id="pbtn-monthly" onclick="setPeriod('monthly')">Monthly</button>
-        <button class="pbtn" id="pbtn-yearly" onclick="setPeriod('yearly')">Yearly</button>
-      </div>
-      <div id="spend-summary"><div class="empty">No spend recorded yet</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ti ti-history"></i> Recent activity</div>
-      <div id="parent-tx"><div class="empty">No transactions yet</div></div>
-    </div>
-  </div>
-
-  <!-- KID VIEW -->
-  <div id="view-kid" class="view">
-    <div class="vcard">
-      <div class="vcard-logo">TRUSTFUNDMYKID</div>
-      <div class="chip"></div>
-      <div class="vcard-num">4521 •••• •••• 7834</div>
-      <div class="vcard-bal" id="kid-balance">S/ 0.00</div>
-      <div class="vcard-bal-lbl">available balance</div>
-      <div class="vcard-row">
-        <div><div class="vcard-lbl">Cardholder</div><div class="vcard-name">Sofia Mendoza</div></div>
-        <div><div class="vcard-lbl">Expires</div><div class="vcard-val">12/28</div></div>
-        <div><div class="vcard-lbl">Network</div><div class="vcard-val" style="color:#7c6ff7;font-weight:600">VISA</div></div>
-      </div>
-    </div>
-
-    <div class="vault">
-      <div class="card-title" style="color:#c9a227"><i class="ti ti-lock" style="color:#c9a227"></i> Savings vault</div>
-      <div class="vault-amt" id="kid-vault">S/ 0.00</div>
-      <div class="vault-prog"><div class="vault-fill" id="vault-bar" style="width:0%"></div></div>
-      <div class="vault-note">This money is locked and can only be used for your future goals</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ti ti-chart-pie"></i> My spending breakdown</div>
-      <div id="kid-cats"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ti ti-credit-card"></i> Simulate a purchase</div>
-      <div style="font-size:12px;color:#555;margin-bottom:10px">Tap a category to spend S/ 10</div>
-      <div class="spend-grid" id="spend-btns"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ti ti-history"></i> My transactions</div>
-      <div id="kid-tx"><div class="empty">No transactions yet</div></div>
+    <div class="pillar pillar-grow">
+      <span class="pillar-tag tag-grow">Grow</span>
+      <div class="pillar-title">Investments</div>
+      <div class="pillar-desc">A portion goes into index funds or ETFs — building real wealth from day one.</div>
+      <ul class="pillar-features">
+        <li>Invested in index funds / ETFs</li>
+        <li>Unlocks at age 18 or a set goal</li>
+        <li>Kid sees their portfolio grow</li>
+        <li>The real trust fund layer</li>
+      </ul>
+      <div class="pillar-amount">S/ 70</div>
+      <div class="pillar-amount-label">example monthly investment</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="notif" id="notif"></div>
+<!-- CONTRACTS -->
+<section class="contracts">
+  <div class="section-label">Smart contracts</div>
+  <div class="section-title">Money with conditions.</div>
+  <div class="section-sub">Set unlock rules for saved and invested funds. Your kid earns access — they don't just receive it.</div>
+  <div class="contract-card">
+    <div class="contract-row">
+      <div><div class="contract-label">Sofia's college fund</div><div style="font-size:12px;color:#444;margin-top:2px">Invested · S/ 4,200 · Growing</div></div>
+      <span class="contract-unlock unlock-age">Unlocks at age 18</span>
+    </div>
+    <div class="contract-row">
+      <div><div class="contract-label">Birthday savings vault</div><div style="font-size:12px;color:#444;margin-top:2px">Saved · S/ 650 · Earning interest</div></div>
+      <span class="contract-unlock unlock-event">Unlocks Dec 15</span>
+    </div>
+    <div class="contract-row">
+      <div><div class="contract-label">School reward fund</div><div style="font-size:12px;color:#444;margin-top:2px">Saved · S/ 300 · Locked</div></div>
+      <span class="contract-unlock unlock-grade">Unlocks on top grades</span>
+    </div>
+  </div>
+</section>
+
+<!-- GROWTH SIM -->
+<section class="growth">
+  <div class="section-label">Watch it grow</div>
+  <div class="section-title">S/ 50/month.<br>18 years. See what happens.</div>
+  <div class="growth-visual">
+    <div class="growth-controls">
+      <div class="ctrl"><label>Monthly: <strong id="monthly-lbl">S/ 50</strong></label><input type="range" min="20" max="500" step="10" value="50" oninput="updateGrowth(this.value)"></div>
+    </div>
+    <div class="growth-bars" id="growth-bars"></div>
+    <div style="display:flex;justify-content:center;gap:24px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#555"><div style="width:10px;height:10px;border-radius:2px;background:#7c6ff7"></div>Saved</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#555"><div style="width:10px;height:10px;border-radius:2px;background:#4da6ff"></div>Invested (7% avg)</div>
+    </div>
+    <div class="growth-note">Illustrative only. Investment returns are not guaranteed.</div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-label">Getting started</div>
+  <div class="section-title">Up and running in minutes</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div><div class="step-title">Create your family account</div><div class="step-desc">Add your kid's profile and set how you want to split money across Spend, Save, and Grow.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-title">Set your unlock conditions</div><div class="step-desc">Decide when saved and invested funds unlock — by age, milestone, or event.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div><div class="step-title">Top up instantly</div><div class="step-desc">Send money from your phone in seconds. It's split automatically across all three layers.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div><div class="step-title">Watch your kid's future grow</div><div class="step-desc">Both you and your kid see the wallet, the vault, and the investments — in real time.</div></div></div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="founder-card">
+    <div class="founder-avatar">V</div>
+    <div class="founder-quote">"I built this because trust funds shouldn't be a privilege. Every parent wants to build something for their kids — they just never had the tools. Now they do."</div>
+    <div class="founder-name">Vero Grados</div>
+    <div class="founder-title">Founder, TrustFundMyKid &nbsp;·&nbsp; Lima, Peru 🇵🇪</div>
+  </div>
+</section>
+
+<section class="bottom-cta">
+  <h2>Every kid deserves<br>a trust fund.</h2>
+  <p>Join the waitlist and be first when we launch.</p>
+  <div class="form-wrap">
+    <input type="email" id="email2" placeholder="Enter your email address">
+    <button onclick="joinWaitlist2()">Get early access</button>
+  </div>
+  <p class="form-note" style="margin-top:12px">No spam. Just a heads up when we're ready.</p>
+</section>
+
+<footer>
+  <div class="footer-logo">trustfund<span>mykid</span></div>
+  <div class="footer-note">© 2026 TrustFundMyKid · Lima, Peru</div>
+</footer>
 
 <script>
-var cats = [
-  {id:'food',        name:'Food & dining',   icon:'ti-tools-kitchen-2',  color:'#f97316', pct:25, def:25},
-  {id:'gaming',      name:'Gaming',          icon:'ti-device-gamepad-2', color:'#7c6ff7', pct:20, def:20},
-  {id:'entertainment',name:'Entertainment',  icon:'ti-device-tv',        color:'#ec4899', pct:15, def:15},
-  {id:'education',   name:'Education',       icon:'ti-school',           color:'#06b6d4', pct:15, def:15},
-  {id:'clothing',    name:'Clothing',        icon:'ti-shirt',            color:'#a3e635', pct:10, def:10},
-  {id:'savings',     name:'Savings (locked)',icon:'ti-lock',             color:'#c9a227', pct:15, def:15, locked:true}
-];
-
-var state = {
-  totalSent: 0,
-  vaultAmt: 0,
-  spendable: 0,
-  catAmounts: {},
-  txs: [],
-  method: 'yape'
-};
-
-var selectedCat = '';
-var currentPeriod = 'weekly';
-var spendLog = {weekly:{}, monthly:{}, yearly:{}};
-
-cats.forEach(function(c) {
-  state.catAmounts[c.id] = 0;
-  spendLog.weekly[c.id] = 0;
-  spendLog.monthly[c.id] = 0;
-  spendLog.yearly[c.id] = 0;
-});
-
-function notify(msg, type) {
-  var n = document.getElementById('notif');
-  n.textContent = msg;
-  n.style.borderColor = type === 'success' ? '#4ade80' : type === 'warn' ? '#c9a227' : '#7c6ff7';
-  n.classList.add('show');
-  setTimeout(function() { n.classList.remove('show'); }, 3000);
+function joinWaitlist() {
+  var e = document.getElementById('email');
+  if (!e.value || !e.value.includes('@')) { e.style.borderColor='#f87171'; setTimeout(function(){e.style.borderColor='#2a2a3a'},2000); return; }
+  e.parentElement.style.display='none';
+  document.querySelector('.form-note').style.display='none';
+  document.getElementById('wcount').innerHTML='<span style="color:#4ade80">You\'re on the list! We\'ll be in touch.</span>';
+}
+function joinWaitlist2() {
+  var e = document.getElementById('email2');
+  if (!e.value || !e.value.includes('@')) { e.style.borderColor='#f87171'; setTimeout(function(){e.style.borderColor='#2a2a3a'},2000); return; }
+  e.value=''; e.placeholder="You're on the list!"; e.style.borderColor='#4ade80'; e.style.color='#4ade80';
 }
 
-function switchTab(tab) {
-  document.getElementById('tab-parent').classList.toggle('active', tab === 'parent');
-  document.getElementById('tab-kid').classList.toggle('active', tab === 'kid');
-  document.getElementById('view-parent').classList.toggle('active', tab === 'parent');
-  document.getElementById('view-kid').classList.toggle('active', tab === 'kid');
-}
-
-function selectMethod(m) {
-  state.method = m;
-  document.getElementById('btn-yape').classList.toggle('active', m === 'yape');
-  document.getElementById('btn-plin').classList.toggle('active', m === 'plin');
-  document.getElementById('btn-bank').classList.toggle('active', m === 'bank');
-  document.getElementById('transfer-status').innerHTML = '';
-}
-
-function buildCatPicker() {
-  var el = document.getElementById('cat-picker');
-  var html = '<button class="cpick active" onclick="pickCat(this,\'\')">All categories</button>';
-  for (var i = 0; i < cats.length; i++) {
-    var c = cats[i];
-    html += '<button class="cpick" onclick="pickCat(this,\'' + c.id + '\')">'
-          + '<i class="ti ' + c.icon + '" style="color:' + c.color + ';font-size:13px;vertical-align:-2px"></i> '
-          + c.name + '</button>';
-  }
-  el.innerHTML = html;
-}
-
-function pickCat(btn, id) {
-  var btns = document.querySelectorAll('.cpick');
-  for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
-  btn.classList.add('active');
-  selectedCat = id;
-}
-
-function sendMoney() {
-  var raw = parseFloat(document.getElementById('transfer-amt').value);
-  if (!raw || raw <= 0) { notify('Enter a valid amount', 'warn'); return; }
-  var amt = Math.round(raw * 100) / 100;
-  var instant = state.method !== 'bank';
-  var label = state.method === 'yape' ? 'Yape' : state.method === 'plin' ? 'Plin' : 'Bank transfer';
-  if (instant) {
-    applyTransfer(amt);
-    document.getElementById('transfer-status').innerHTML = '<span class="badge-ok"><i class="ti ti-check"></i> Sent instantly via ' + label + '</span>';
-    notify('S/ ' + amt.toFixed(2) + ' sent via ' + label + '!', 'success');
-  } else {
-    document.getElementById('transfer-status').innerHTML = '<span class="badge-warn"><i class="ti ti-clock"></i> Pending — bank transfers take 1-2 days</span>';
-    notify('Bank transfer initiated. Pending 1-2 days.', 'warn');
-    setTimeout(function() {
-      applyTransfer(amt);
-      notify('S/ ' + amt.toFixed(2) + ' arrived from bank transfer', 'success');
-      document.getElementById('transfer-status').innerHTML = '<span class="badge-ok"><i class="ti ti-check"></i> Transfer completed</span>';
-    }, 4000);
-  }
-  document.getElementById('transfer-amt').value = '';
-}
-
-function applyTransfer(amt) {
-  state.totalSent += amt;
-  if (selectedCat) {
-    state.catAmounts[selectedCat] = Math.round((state.catAmounts[selectedCat] + amt) * 100) / 100;
-  } else {
-    for (var i = 0; i < cats.length; i++) {
-      var c = cats[i];
-      state.catAmounts[c.id] = Math.round((state.catAmounts[c.id] + amt * c.pct / 100) * 100) / 100;
-    }
-  }
-  state.vaultAmt = state.catAmounts['savings'];
-  var spendable = 0;
-  for (var i = 0; i < cats.length; i++) {
-    if (!cats[i].locked) spendable += state.catAmounts[cats[i].id];
-  }
-  state.spendable = Math.round(spendable * 100) / 100;
-  var catLabel = 'all categories';
-  if (selectedCat) {
-    for (var i = 0; i < cats.length; i++) {
-      if (cats[i].id === selectedCat) { catLabel = cats[i].name; break; }
-    }
-  }
-  state.txs.unshift({type:'credit', desc:'Transfer to ' + catLabel, amt:amt, date:new Date().toLocaleDateString('es-PE')});
-  render();
-}
-
-function buildSliders() {
-  var el = document.getElementById('sliders');
-  var html = '';
-  for (var i = 0; i < cats.length; i++) {
-    var c = cats[i];
-    var accent = c.locked ? 'style="accent-color:#c9a227"' : '';
-    var badge = c.locked ? '<span class="locked-badge"><i class="ti ti-lock"></i>locked</span>' : '';
-    html += '<div class="slider-row">'
-          + '<div class="sl-label">'
-          + '<span class="sl-name"><i class="ti ' + c.icon + '" style="color:' + c.color + '"></i>' + c.name + ' ' + badge + '</span>'
-          + '<span class="sl-pct" id="pct-' + c.id + '">' + c.pct + '%</span>'
-          + '</div>'
-          + '<input type="range" min="0" max="100" step="1" value="' + c.pct + '" ' + accent + ' oninput="updateSlider(\'' + c.id + '\',this.value)">'
-          + '</div>';
-  }
-  el.innerHTML = html;
-  updateTotal();
-}
-
-function updateSlider(id, val) {
-  for (var i = 0; i < cats.length; i++) {
-    if (cats[i].id === id) { cats[i].pct = parseInt(val); break; }
-  }
-  document.getElementById('pct-' + id).textContent = val + '%';
-  updateTotal();
-}
-
-function updateTotal() {
-  var total = 0;
-  for (var i = 0; i < cats.length; i++) total += cats[i].pct;
-  var lbl = document.getElementById('total-label');
-  lbl.textContent = total + '%';
-  lbl.className = total === 100 ? 'total-ok' : 'total-err';
-}
-
-function resetPcts() {
-  for (var i = 0; i < cats.length; i++) {
-    cats[i].pct = cats[i].def;
-    var slider = document.querySelector('input[oninput*="\'' + cats[i].id + '\'"]');
-    if (slider) slider.value = cats[i].def;
-    var lbl = document.getElementById('pct-' + cats[i].id);
-    if (lbl) lbl.textContent = cats[i].def + '%';
-  }
-  updateTotal();
-  notify('Allocations reset to defaults', 'info');
-}
-
-function setPeriod(p) {
-  currentPeriod = p;
-  document.getElementById('pbtn-weekly').classList.toggle('active', p === 'weekly');
-  document.getElementById('pbtn-monthly').classList.toggle('active', p === 'monthly');
-  document.getElementById('pbtn-yearly').classList.toggle('active', p === 'yearly');
-  renderSpendSummary();
-}
-
-function renderSpendSummary() {
-  var el = document.getElementById('spend-summary');
-  if (!el) return;
-  var log = spendLog[currentPeriod];
-  var total = 0;
-  for (var i = 0; i < cats.length; i++) total += (log[cats[i].id] || 0);
-  if (total === 0) {
-    el.innerHTML = '<div class="empty">No spend recorded for this period yet</div>';
-    return;
-  }
-  var html = '';
-  for (var i = 0; i < cats.length; i++) {
-    var c = cats[i];
-    var amt = log[c.id] || 0;
-    var pct = total > 0 ? Math.round(amt / total * 100) : 0;
-    html += '<div class="spend-row">'
-          + '<span class="spend-cat"><i class="ti ' + c.icon + '" style="color:' + c.color + '"></i>' + c.name + '</span>'
-          + '<div class="spend-bar-wrap"><div class="spend-bar-inner" style="width:' + pct + '%;background:' + c.color + '"></div></div>'
-          + '<span class="spend-amt">S/ ' + amt.toFixed(2) + '</span>'
-          + '</div>';
-  }
-  html += '<div style="display:flex;justify-content:space-between;padding:10px 0 0;border-top:0.5px solid #2a2a3a;margin-top:4px">'
-        + '<span style="font-size:12px;color:#666">Total spent</span>'
-        + '<span style="font-size:14px;font-weight:600;color:#fff">S/ ' + total.toFixed(2) + '</span>'
-        + '</div>';
-  el.innerHTML = html;
-}
-
-function spendCategory(id) {
-  var cat = null;
-  for (var i = 0; i < cats.length; i++) {
-    if (cats[i].id === id) { cat = cats[i]; break; }
-  }
-  if (state.catAmounts[id] < 10) { notify('Not enough in ' + cat.name + ' (need S/ 10)', 'warn'); return; }
-  state.catAmounts[id] = Math.round((state.catAmounts[id] - 10) * 100) / 100;
-  state.spendable = Math.max(0, Math.round((state.spendable - 10) * 100) / 100);
-  spendLog.weekly[id] = Math.round((spendLog.weekly[id] + 10) * 100) / 100;
-  spendLog.monthly[id] = Math.round((spendLog.monthly[id] + 10) * 100) / 100;
-  spendLog.yearly[id] = Math.round((spendLog.yearly[id] + 10) * 100) / 100;
-  state.txs.unshift({type:'debit', desc:'Purchase · ' + cat.name, amt:10, date:new Date().toLocaleDateString('es-PE')});
-  notify('Spent S/ 10.00 on ' + cat.name, 'info');
-  render();
-}
-
-function render() {
-  document.getElementById('stat-total').textContent = 'S/ ' + state.totalSent.toFixed(2);
-  document.getElementById('stat-vault').textContent = 'S/ ' + state.vaultAmt.toFixed(2);
-  document.getElementById('stat-avail').textContent = 'S/ ' + state.spendable.toFixed(2);
-  document.getElementById('kid-balance').textContent = 'S/ ' + state.spendable.toFixed(2);
-  document.getElementById('kid-vault').textContent = 'S/ ' + state.vaultAmt.toFixed(2);
-  var vp = state.totalSent > 0 ? Math.round(state.vaultAmt / state.totalSent * 100) : 0;
-  document.getElementById('vault-bar').style.width = vp + '%';
-
-  var catsHtml = '';
-  for (var i = 0; i < cats.length; i++) {
-    var c = cats[i];
-    var amt = state.catAmounts[c.id] || 0;
-    var budget = state.totalSent > 0 ? state.totalSent * c.pct / 100 : 0;
-    var fp = budget > 0 ? Math.min(100, Math.round(amt / budget * 100)) : 0;
-    catsHtml += '<div class="cat-item">'
-      + '<div class="cat-header"><span class="cat-name"><i class="ti ' + c.icon + '" style="color:' + c.color + '"></i>' + c.name + '</span>'
-      + '<span class="cat-amounts">S/ ' + amt.toFixed(2) + ' / S/ ' + budget.toFixed(2) + '</span></div>'
-      + '<div class="cat-bar"><div class="cat-fill" style="width:' + fp + '%;background:' + c.color + '"></div></div>'
-      + '<div class="cat-pct-lbl">' + c.pct + '% of wallet · ' + fp + '% used</div>'
+function updateGrowth(monthly) {
+  monthly = parseFloat(monthly);
+  document.getElementById('monthly-lbl').textContent = 'S/ ' + monthly;
+  var years = [1,3,5,10,15,18];
+  var bars = document.getElementById('growth-bars');
+  var maxVal = 0;
+  var data = years.map(function(y) {
+    var saved = monthly * 12 * y;
+    var invested = 0;
+    for (var m = 1; m <= y * 12; m++) invested = (invested + monthly * 0.4) * (1 + 0.07/12);
+    if (saved + invested > maxVal) maxVal = saved + invested;
+    return {y: y, saved: Math.round(saved * 0.6), invested: Math.round(invested)};
+  });
+  bars.innerHTML = data.map(function(d) {
+    var total = d.saved + d.invested;
+    var savedH = Math.round((d.saved / maxVal) * 130);
+    var invH = Math.round((d.invested / maxVal) * 130);
+    var totalK = total >= 1000 ? (total/1000).toFixed(1)+'k' : total;
+    return '<div class="g-bar-wrap">'
+      + '<div class="g-amount" style="color:#ccc;font-size:11px">S/'+totalK+'</div>'
+      + '<div style="display:flex;flex-direction:column;justify-content:flex-end;height:130px;gap:2px;width:100%">'
+      + '<div class="g-bar" style="height:'+invH+'px;background:#4da6ff;opacity:0.85"></div>'
+      + '<div class="g-bar" style="height:'+savedH+'px;background:#7c6ff7;opacity:0.85"></div>'
+      + '</div>'
+      + '<div class="g-label">yr '+d.y+'</div>'
       + '</div>';
-  }
-  document.getElementById('kid-cats').innerHTML = catsHtml;
-
-  var spendHtml = '';
-  for (var i = 0; i < cats.length; i++) {
-    if (!cats[i].locked) {
-      var c = cats[i];
-      spendHtml += '<button class="spend-btn" onclick="spendCategory(\'' + c.id + '\')">'
-                 + '<i class="ti ' + c.icon + '" style="color:' + c.color + '"></i>' + c.name + '</button>';
-    }
-  }
-  document.getElementById('spend-btns').innerHTML = spendHtml;
-
-  renderTxs();
-  renderSpendSummary();
+  }).join('');
 }
-
-function renderTxs() {
-  var recent = state.txs.slice(0, 6);
-  var html = recent.length === 0 ? '<div class="empty">No transactions yet</div>' : '';
-  for (var i = 0; i < recent.length; i++) {
-    var t = recent[i];
-    var isCredit = t.type === 'credit';
-    html += '<div class="tx">'
-          + '<div class="tx-left">'
-          + '<div class="tx-icon" style="background:' + (isCredit ? '#001a0a' : '#1a0005') + '">'
-          + '<i class="ti ' + (isCredit ? 'ti-arrow-down-left' : 'ti-arrow-up-right') + '" style="color:' + (isCredit ? '#4ade80' : '#f87171') + ';font-size:15px"></i>'
-          + '</div>'
-          + '<div><div class="tx-name">' + t.desc + '</div><div class="tx-date">' + t.date + '</div></div>'
-          + '</div>'
-          + '<div class="' + (isCredit ? 'tx-credit' : 'tx-debit') + '">' + (isCredit ? '+' : '-') + ' S/ ' + t.amt.toFixed(2) + '</div>'
-          + '</div>';
-  }
-  document.getElementById('parent-tx').innerHTML = html;
-  document.getElementById('kid-tx').innerHTML = html;
-}
-
-buildCatPicker();
-buildSliders();
-render();
+updateGrowth(50);
 </script>
+</body>
+</html>
