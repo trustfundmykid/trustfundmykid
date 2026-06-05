@@ -88,11 +88,24 @@ function join() {
     setTimeout(function(){ e.style.borderColor = '#2a2a3a'; }, 2000);
     return;
   }
-  document.getElementById('form-wrap').style.display = 'none';
-  document.querySelector('.form-note').style.display = 'none';
-  document.getElementById('success').style.display = 'block';
-  var c = document.getElementById('count');
-  c.textContent = parseInt(c.textContent) + 1;
+  var email = e.value;
+  fetch('https://formspree.io/f/xqeoaynn', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify({email: email, _subject: 'New waitlist signup — TrustFundMyKid'})
+  }).then(function(r){
+    document.getElementById('form-wrap').style.display = 'none';
+    document.querySelector('.form-note').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    var c = document.getElementById('count');
+    c.textContent = parseInt(c.textContent) + 1;
+  }).catch(function(){
+    document.getElementById('form-wrap').style.display = 'none';
+    document.querySelector('.form-note').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    var c = document.getElementById('count');
+    c.textContent = parseInt(c.textContent) + 1;
+  });
 }
 document.getElementById('email').addEventListener('keydown', function(e){
   if (e.key === 'Enter') join();
