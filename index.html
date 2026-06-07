@@ -3,308 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrustFundMyKid — A real trust fund for every kid</title>
+<title>TrustFundMyKid — Something big is coming</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e8e8f0;min-height:100vh}
-a{color:inherit;text-decoration:none}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-bottom:0.5px solid #1a1a2a;position:sticky;top:0;background:#0a0a0fcc;backdrop-filter:blur(12px);z-index:10}
-.nav-logo{font-size:17px;font-weight:700;color:#fff}
-.nav-logo span{color:#7c6ff7}
-.nav-cta{padding:9px 20px;background:#7c6ff7;border:none;border-radius:8px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
-.nav-cta:hover{opacity:0.85}
-.hero{text-align:center;padding:90px 24px 70px;max-width:760px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#13132a;border:0.5px solid #3a3a6a;border-radius:20px;padding:5px 14px;font-size:12px;color:#9d97f5;margin-bottom:28px}
-.hero-badge span{width:6px;height:6px;background:#7c6ff7;border-radius:50%;display:inline-block}
-h1{font-size:52px;font-weight:700;line-height:1.15;letter-spacing:-1.5px;color:#fff;margin-bottom:20px}
+html,body{height:100%}
+body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e8e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
+
+/* Subtle background grid */
+body::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(124,111,247,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,247,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+
+/* Glow */
+body::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(124,111,247,0.06) 0%,transparent 70%);pointer-events:none}
+
+.wrap{text-align:center;max-width:560px;position:relative;z-index:1}
+
+.logo{font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.3px;margin-bottom:48px;opacity:0.6}
+.logo span{color:#7c6ff7}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#13132a;border:0.5px solid #3a3a6a;border-radius:20px;padding:5px 14px;font-size:11px;color:#9d97f5;margin-bottom:28px;letter-spacing:0.3px}
+.pulse{width:6px;height:6px;background:#7c6ff7;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+
+h1{font-size:48px;font-weight:700;line-height:1.15;letter-spacing:-1.5px;color:#fff;margin-bottom:20px}
 h1 em{color:#7c6ff7;font-style:normal}
-.hero-sub{font-size:18px;color:#888;line-height:1.7;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto}
-.form-wrap{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
-.form-wrap input{padding:13px 18px;background:#111118;border:0.5px solid #2a2a3a;border-radius:10px;color:#fff;font-size:14px;width:280px;outline:none}
-.form-wrap input:focus{border-color:#7c6ff7}
-.form-wrap input::placeholder{color:#444}
-.form-wrap button{padding:13px 24px;background:#7c6ff7;border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
-.form-wrap button:hover{opacity:0.85}
-.form-note{font-size:12px;color:#555;margin-bottom:12px}
-.waitlist-count{font-size:13px;color:#666}
-.waitlist-count strong{color:#9d97f5}
 
-/* THREE PILLARS */
-.pillars{padding:80px 24px;max-width:960px;margin:0 auto}
-.section-label{font-size:11px;color:#7c6ff7;text-transform:uppercase;letter-spacing:1.5px;text-align:center;margin-bottom:12px}
-.section-title{font-size:36px;font-weight:700;text-align:center;color:#fff;margin-bottom:16px;letter-spacing:-0.5px}
-.section-sub{font-size:16px;color:#666;text-align:center;max-width:520px;margin:0 auto 56px;line-height:1.7}
-.pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.pillar{border-radius:20px;padding:32px;position:relative;overflow:hidden}
-.pillar-spend{background:#111118;border:0.5px solid #2a2a3a}
-.pillar-save{background:#0d0d00;border:0.5px solid #3a2e00}
-.pillar-grow{background:#0a0f1a;border:0.5px solid #0c3060}
-.pillar-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;display:inline-block;padding:3px 10px;border-radius:20px}
-.tag-spend{background:#1e1e2e;color:#7c6ff7}
-.tag-save{background:#1a1500;color:#c9a227}
-.tag-grow{background:#0a1a2e;color:#4da6ff}
-.pillar-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:10px}
-.pillar-desc{font-size:13px;line-height:1.7;margin-bottom:20px}
-.pillar-spend .pillar-desc{color:#666}
-.pillar-save .pillar-desc{color:#665a00}
-.pillar-grow .pillar-desc{color:#2a5a8a}
-.pillar-features{list-style:none;display:flex;flex-direction:column;gap:8px}
-.pillar-features li{font-size:12px;display:flex;align-items:center;gap:8px}
-.pillar-spend .pillar-features li{color:#888}
-.pillar-save .pillar-features li{color:#8a7a00}
-.pillar-grow .pillar-features li{color:#3a7ab0}
-.pillar-features li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.pillar-spend .pillar-features li::before{background:#7c6ff7}
-.pillar-save .pillar-features li::before{background:#c9a227}
-.pillar-grow .pillar-features li::before{background:#4da6ff}
-.pillar-amount{font-size:32px;font-weight:700;margin-top:20px}
-.pillar-spend .pillar-amount{color:#7c6ff7}
-.pillar-save .pillar-amount{color:#c9a227}
-.pillar-grow .pillar-amount{color:#4da6ff}
-.pillar-amount-label{font-size:11px;margin-top:4px}
-.pillar-spend .pillar-amount-label{color:#444}
-.pillar-save .pillar-amount-label{color:#4a3e00}
-.pillar-grow .pillar-amount-label{color:#1a3a5a}
+.sub{font-size:16px;color:#555;line-height:1.75;margin-bottom:40px;max-width:420px;margin-left:auto;margin-right:auto}
+.sub strong{color:#888;font-weight:500}
 
-/* CONTRACTS */
-.contracts{padding:80px 24px;max-width:760px;margin:0 auto;text-align:center}
-.contract-card{background:#111118;border:0.5px solid #2a2a3a;border-radius:20px;padding:32px;margin-top:48px;text-align:left}
-.contract-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:0.5px solid #1a1a2a}
-.contract-row:last-child{border-bottom:none}
-.contract-label{font-size:13px;color:#888}
-.contract-value{font-size:13px;font-weight:600;color:#fff}
-.contract-unlock{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
-.unlock-age{background:#13132a;color:#7c6ff7}
-.unlock-event{background:#0a1a2e;color:#4da6ff}
-.unlock-grade{background:#0d0d00;color:#c9a227}
+/* Form */
+.form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.form input{padding:13px 18px;background:#111118;border:0.5px solid #2a2a3a;border-radius:10px;color:#fff;font-size:14px;width:260px;outline:none;transition:border-color 0.2s}
+.form input:focus{border-color:#7c6ff7}
+.form input::placeholder{color:#333}
+.form button{padding:13px 22px;background:#7c6ff7;border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity 0.2s}
+.form button:hover{opacity:0.85}
+.form-note{font-size:12px;color:#333}
 
-/* GROWTH SIM */
-.growth{padding:80px 24px;max-width:760px;margin:0 auto;text-align:center}
-.growth-visual{background:#111118;border:0.5px solid #2a2a3a;border-radius:20px;padding:32px;margin-top:48px}
-.growth-bars{display:flex;align-items:flex-end;gap:12px;height:160px;margin-bottom:16px;justify-content:center}
-.g-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:80px}
-.g-bar{width:100%;border-radius:6px 6px 0 0;transition:height 0.4s}
-.g-label{font-size:11px;color:#555}
-.g-amount{font-size:12px;font-weight:600}
-.growth-note{font-size:12px;color:#444;margin-top:12px}
-.growth-controls{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
-.ctrl{display:flex;align-items:center;gap:8px;font-size:13px;color:#888}
-.ctrl input{accent-color:#7c6ff7}
+/* Success */
+.success{display:none;background:#111118;border:0.5px solid #2a2a3a;border-radius:12px;padding:16px 24px;font-size:14px;color:#9d97f5;margin-bottom:14px}
+.success span{color:#4ade80;margin-right:8px}
 
-/* HOW IT WORKS */
-.how{padding:80px 24px;max-width:760px;margin:0 auto;text-align:center}
-.steps{display:flex;flex-direction:column;gap:0;margin-top:48px;text-align:left}
-.step{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:0.5px solid #1a1a2a}
-.step:last-child{border-bottom:none}
-.step-num{width:36px;height:36px;border-radius:50%;background:#13132a;border:0.5px solid #3a3a6a;color:#7c6ff7;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.step-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
-.step-desc{font-size:13px;color:#666;line-height:1.6}
+/* Counter */
+.counter{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#333}
+.counter strong{color:#555}
 
-/* FOUNDER */
-.founder{padding:80px 24px;max-width:600px;margin:0 auto;text-align:center}
-.founder-card{background:#111118;border:0.5px solid #2a2a3a;border-radius:20px;padding:40px}
-.founder-avatar{width:64px;height:64px;border-radius:50%;background:#13132a;border:2px solid #7c6ff7;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#7c6ff7;margin:0 auto 16px}
-.founder-quote{font-size:15px;color:#aaa;line-height:1.8;margin-bottom:20px;font-style:italic}
-.founder-name{font-size:14px;font-weight:600;color:#fff}
-.founder-title{font-size:12px;color:#555;margin-top:4px}
-
-/* BOTTOM CTA */
-.bottom-cta{padding:90px 24px;text-align:center;border-top:0.5px solid #1a1a2a}
-.bottom-cta h2{font-size:38px;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:-0.5px}
-.bottom-cta p{font-size:16px;color:#666;margin-bottom:36px}
-footer{padding:24px 40px;border-top:0.5px solid #1a1a2a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.footer-logo{font-size:14px;font-weight:700;color:#fff}
-.footer-logo span{color:#7c6ff7}
-.footer-note{font-size:12px;color:#444}
-@media(max-width:600px){h1{font-size:34px}nav{padding:16px 20px}.form-wrap input{width:100%}.form-wrap{flex-direction:column;align-items:center}.bottom-cta h2{font-size:26px}}
+/* Bottom hint */
+.hint{position:absolute;bottom:24px;font-size:11px;color:#222;letter-spacing:0.5px}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">trustfund<span>mykid</span></div>
-  <button class="nav-cta" onclick="document.getElementById('email').focus()">Join waitlist</button>
-</nav>
+<div class="wrap">
+  <div class="logo">trustfund<span>mykid</span></div>
 
-<section class="hero">
-  <div class="hero-badge"><span></span> A real trust fund — for every family</div>
-  <h1>Trust funds aren't<br>just for <em>rich kids.</em></h1>
-  <p class="hero-sub">TrustFundMyKid gives every parent the tools to spend, save, and grow money for their kids — with controls, locked savings, and real investments. Not just a wallet. A legacy.</p>
-  <div class="form-wrap">
-    <input type="email" id="email" placeholder="Enter your email address">
-    <button onclick="joinWaitlist()">Get early access</button>
+  <div class="eyebrow"><div class="pulse"></div> Building something that should've existed years ago</div>
+
+  <h1>Your kid deserves<br>a real <em>trust fund.</em></h1>
+
+  <p class="sub">
+    Not a piggy bank. Not an allowance app.<br>
+    <strong>The first digital trust fund for every family.</strong><br>
+    We're almost ready. Be the first to know.
+  </p>
+
+  <div class="success" id="success"><span>✓</span> You're on the list. We'll reach out soon.</div>
+
+  <div class="form" id="form-wrap">
+    <input type="email" id="email" placeholder="your@email.com">
+    <button onclick="join()">Get early access</button>
   </div>
-  <p class="form-note">No credit card required &nbsp;·&nbsp; Free to join</p>
-  <div class="waitlist-count" id="wcount">Join <strong>247 parents</strong> already on the waitlist</div>
-</section>
+  <p class="form-note">No spam. Just one email when we launch.</p>
 
-<!-- THREE PILLARS -->
-<section class="pillars">
-  <div class="section-label">How it works</div>
-  <div class="section-title">Three layers of money.<br>One account.</div>
-  <div class="section-sub">Every transfer you make gets split across three buckets — automatically, based on rules you set.</div>
-  <div class="pillar-grid">
-    <div class="pillar pillar-spend">
-      <span class="pillar-tag tag-spend">Spend</span>
-      <div class="pillar-title">Daily wallet</div>
-      <div class="pillar-desc">Controlled spending across categories you define. Your kid uses a virtual card.</div>
-      <ul class="pillar-features">
-        <li>Food, gaming, education, clothing</li>
-        <li>% limits per category</li>
-        <li>Real virtual Visa card</li>
-        <li>Weekly spend reports</li>
-      </ul>
-      <div class="pillar-amount">S/ 150</div>
-      <div class="pillar-amount-label">example monthly spend budget</div>
-    </div>
-    <div class="pillar pillar-save">
-      <span class="pillar-tag tag-save">Save</span>
-      <div class="pillar-title">Locked vault</div>
-      <div class="pillar-desc">Money your kid can't touch — until you decide. Earns interest while it waits.</div>
-      <ul class="pillar-features">
-        <li>Locked by parent, unlocked by goal</li>
-        <li>Earns fixed-term deposit rates</li>
-        <li>Unlock by age, grade, or event</li>
-        <li>Kid watches it grow</li>
-      </ul>
-      <div class="pillar-amount">S/ 80</div>
-      <div class="pillar-amount-label">example monthly savings</div>
-    </div>
-    <div class="pillar pillar-grow">
-      <span class="pillar-tag tag-grow">Grow</span>
-      <div class="pillar-title">Investments</div>
-      <div class="pillar-desc">A portion goes into index funds or ETFs — building real wealth from day one.</div>
-      <ul class="pillar-features">
-        <li>Invested in index funds / ETFs</li>
-        <li>Unlocks at age 18 or a set goal</li>
-        <li>Kid sees their portfolio grow</li>
-        <li>The real trust fund layer</li>
-      </ul>
-      <div class="pillar-amount">S/ 70</div>
-      <div class="pillar-amount-label">example monthly investment</div>
-    </div>
-  </div>
-</section>
+  <div class="counter">Joined by <strong id="count">247</strong>&nbsp;parents already</div>
+</div>
 
-<!-- CONTRACTS -->
-<section class="contracts">
-  <div class="section-label">Smart contracts</div>
-  <div class="section-title">Money with conditions.</div>
-  <div class="section-sub">Set unlock rules for saved and invested funds. Your kid earns access — they don't just receive it.</div>
-  <div class="contract-card">
-    <div class="contract-row">
-      <div><div class="contract-label">Sofia's college fund</div><div style="font-size:12px;color:#444;margin-top:2px">Invested · S/ 4,200 · Growing</div></div>
-      <span class="contract-unlock unlock-age">Unlocks at age 18</span>
-    </div>
-    <div class="contract-row">
-      <div><div class="contract-label">Birthday savings vault</div><div style="font-size:12px;color:#444;margin-top:2px">Saved · S/ 650 · Earning interest</div></div>
-      <span class="contract-unlock unlock-event">Unlocks Dec 15</span>
-    </div>
-    <div class="contract-row">
-      <div><div class="contract-label">School reward fund</div><div style="font-size:12px;color:#444;margin-top:2px">Saved · S/ 300 · Locked</div></div>
-      <span class="contract-unlock unlock-grade">Unlocks on top grades</span>
-    </div>
-  </div>
-</section>
-
-<!-- GROWTH SIM -->
-<section class="growth">
-  <div class="section-label">Watch it grow</div>
-  <div class="section-title">S/ 50/month.<br>18 years. See what happens.</div>
-  <div class="growth-visual">
-    <div class="growth-controls">
-      <div class="ctrl"><label>Monthly: <strong id="monthly-lbl">S/ 50</strong></label><input type="range" min="20" max="500" step="10" value="50" oninput="updateGrowth(this.value)"></div>
-    </div>
-    <div class="growth-bars" id="growth-bars"></div>
-    <div style="display:flex;justify-content:center;gap:24px;margin-bottom:12px">
-      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#555"><div style="width:10px;height:10px;border-radius:2px;background:#7c6ff7"></div>Saved</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#555"><div style="width:10px;height:10px;border-radius:2px;background:#4da6ff"></div>Invested (7% avg)</div>
-    </div>
-    <div class="growth-note">Illustrative only. Investment returns are not guaranteed.</div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how">
-  <div class="section-label">Getting started</div>
-  <div class="section-title">Up and running in minutes</div>
-  <div class="steps">
-    <div class="step"><div class="step-num">1</div><div><div class="step-title">Create your family account</div><div class="step-desc">Add your kid's profile and set how you want to split money across Spend, Save, and Grow.</div></div></div>
-    <div class="step"><div class="step-num">2</div><div><div class="step-title">Set your unlock conditions</div><div class="step-desc">Decide when saved and invested funds unlock — by age, milestone, or event.</div></div></div>
-    <div class="step"><div class="step-num">3</div><div><div class="step-title">Top up instantly</div><div class="step-desc">Send money from your phone in seconds. It's split automatically across all three layers.</div></div></div>
-    <div class="step"><div class="step-num">4</div><div><div class="step-title">Watch your kid's future grow</div><div class="step-desc">Both you and your kid see the wallet, the vault, and the investments — in real time.</div></div></div>
-  </div>
-</section>
-
-<!-- FOUNDER -->
-<section class="founder">
-  <div class="founder-card">
-    <div class="founder-avatar">V</div>
-    <div class="founder-quote">"I built this because trust funds shouldn't be a privilege. Every parent wants to build something for their kids — they just never had the tools. Now they do."</div>
-    <div class="founder-name">Vero Grados</div>
-    <div class="founder-title">Founder, TrustFundMyKid &nbsp;·&nbsp; Lima, Peru 🇵🇪</div>
-  </div>
-</section>
-
-<section class="bottom-cta">
-  <h2>Every kid deserves<br>a trust fund.</h2>
-  <p>Join the waitlist and be first when we launch.</p>
-  <div class="form-wrap">
-    <input type="email" id="email2" placeholder="Enter your email address">
-    <button onclick="joinWaitlist2()">Get early access</button>
-  </div>
-  <p class="form-note" style="margin-top:12px">No spam. Just a heads up when we're ready.</p>
-</section>
-
-<footer>
-  <div class="footer-logo">trustfund<span>mykid</span></div>
-  <div class="footer-note">© 2026 TrustFundMyKid · Lima, Peru</div>
-</footer>
+<div class="hint">Lima, Peru &nbsp;·&nbsp; 2026</div>
 
 <script>
-function joinWaitlist() {
+function join() {
   var e = document.getElementById('email');
-  if (!e.value || !e.value.includes('@')) { e.style.borderColor='#f87171'; setTimeout(function(){e.style.borderColor='#2a2a3a'},2000); return; }
-  e.parentElement.style.display='none';
-  document.querySelector('.form-note').style.display='none';
-  document.getElementById('wcount').innerHTML='<span style="color:#4ade80">You\'re on the list! We\'ll be in touch.</span>';
-}
-function joinWaitlist2() {
-  var e = document.getElementById('email2');
-  if (!e.value || !e.value.includes('@')) { e.style.borderColor='#f87171'; setTimeout(function(){e.style.borderColor='#2a2a3a'},2000); return; }
-  e.value=''; e.placeholder="You're on the list!"; e.style.borderColor='#4ade80'; e.style.color='#4ade80';
-}
-
-function updateGrowth(monthly) {
-  monthly = parseFloat(monthly);
-  document.getElementById('monthly-lbl').textContent = 'S/ ' + monthly;
-  var years = [1,3,5,10,15,18];
-  var bars = document.getElementById('growth-bars');
-  var maxVal = 0;
-  var data = years.map(function(y) {
-    var saved = monthly * 12 * y;
-    var invested = 0;
-    for (var m = 1; m <= y * 12; m++) invested = (invested + monthly * 0.4) * (1 + 0.07/12);
-    if (saved + invested > maxVal) maxVal = saved + invested;
-    return {y: y, saved: Math.round(saved * 0.6), invested: Math.round(invested)};
+  if (!e.value || !e.value.includes('@')) {
+    e.style.borderColor = '#f87171';
+    e.focus();
+    setTimeout(function(){ e.style.borderColor = '#2a2a3a'; }, 2000);
+    return;
+  }
+  var email = e.value;
+  fetch('https://formspree.io/f/xqeoaynn', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify({email: email, _subject: 'New waitlist signup — TrustFundMyKid'})
+  }).then(function(r){
+    document.getElementById('form-wrap').style.display = 'none';
+    document.querySelector('.form-note').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    var c = document.getElementById('count');
+    c.textContent = parseInt(c.textContent) + 1;
+  }).catch(function(){
+    document.getElementById('form-wrap').style.display = 'none';
+    document.querySelector('.form-note').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    var c = document.getElementById('count');
+    c.textContent = parseInt(c.textContent) + 1;
   });
-  bars.innerHTML = data.map(function(d) {
-    var total = d.saved + d.invested;
-    var savedH = Math.round((d.saved / maxVal) * 130);
-    var invH = Math.round((d.invested / maxVal) * 130);
-    var totalK = total >= 1000 ? (total/1000).toFixed(1)+'k' : total;
-    return '<div class="g-bar-wrap">'
-      + '<div class="g-amount" style="color:#ccc;font-size:11px">S/'+totalK+'</div>'
-      + '<div style="display:flex;flex-direction:column;justify-content:flex-end;height:130px;gap:2px;width:100%">'
-      + '<div class="g-bar" style="height:'+invH+'px;background:#4da6ff;opacity:0.85"></div>'
-      + '<div class="g-bar" style="height:'+savedH+'px;background:#7c6ff7;opacity:0.85"></div>'
-      + '</div>'
-      + '<div class="g-label">yr '+d.y+'</div>'
-      + '</div>';
-  }).join('');
 }
-updateGrowth(50);
+document.getElementById('email').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') join();
+});
 </script>
 </body>
 </html>
